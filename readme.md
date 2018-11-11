@@ -1,4 +1,4 @@
-# Security and Systems Audits Project
+# Computer Systems Security Project
 Work done for a Systems Security and Audit class, developed in CSharp, with a library of automated tests, using a WebDriver API that allows to perform the tests in the web page, made by: [Amauri Martins Júnior](https://github.com/maumauagain), [Loren Garcia](https://github.com/loren-garcia), [Júlia Nicola Gualeve](https://github.com/junicola) and Igor Gabrig.
 
 ## Development
