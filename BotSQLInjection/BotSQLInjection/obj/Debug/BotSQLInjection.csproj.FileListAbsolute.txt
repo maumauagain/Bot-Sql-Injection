@@ -1,0 +1,10 @@
+C:\Users\amauri\source\repos\BotSQLInjection\BotSQLInjection\bin\Debug\BotSQLInjection.exe.config
+C:\Users\amauri\source\repos\BotSQLInjection\BotSQLInjection\bin\Debug\BotSQLInjection.exe
+C:\Users\amauri\source\repos\BotSQLInjection\BotSQLInjection\bin\Debug\BotSQLInjection.pdb
+C:\Users\amauri\source\repos\BotSQLInjection\BotSQLInjection\bin\Debug\WebDriver.dll
+C:\Users\amauri\source\repos\BotSQLInjection\BotSQLInjection\bin\Debug\WebDriver.xml
+C:\Users\amauri\source\repos\BotSQLInjection\BotSQLInjection\obj\Debug\BotSQLInjection.csprojAssemblyReference.cache
+C:\Users\amauri\source\repos\BotSQLInjection\BotSQLInjection\obj\Debug\BotSQLInjection.csproj.CoreCompileInputs.cache
+C:\Users\amauri\source\repos\BotSQLInjection\BotSQLInjection\obj\Debug\BotSQLInjection.csproj.CopyComplete
+C:\Users\amauri\source\repos\BotSQLInjection\BotSQLInjection\obj\Debug\BotSQLInjection.exe
+C:\Users\amauri\source\repos\BotSQLInjection\BotSQLInjection\obj\Debug\BotSQLInjection.pdb

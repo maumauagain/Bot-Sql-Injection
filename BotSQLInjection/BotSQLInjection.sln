@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotSQLInjection", "BotSQLInjection\BotSQLInjection.csproj", "{F697CE55-229B-4BDD-B447-55FB01029A21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F697CE55-229B-4BDD-B447-55FB01029A21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F697CE55-229B-4BDD-B447-55FB01029A21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F697CE55-229B-4BDD-B447-55FB01029A21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F697CE55-229B-4BDD-B447-55FB01029A21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C9BDC5FB-2BFA-467D-A560-E425BFE60804}
+	EndGlobalSection
+EndGlobal
