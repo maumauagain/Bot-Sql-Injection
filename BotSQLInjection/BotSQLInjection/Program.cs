@@ -10,6 +10,7 @@ namespace BotSQLInjection
 {
     class Program
     {
+        public static Int32 chancesToLogin = 0;
 
         static void Main(string[] args)
         {
@@ -30,6 +31,14 @@ namespace BotSQLInjection
                     threatStrings.Add(line); //Se foi possível fazer login com essa string, adiciona na lista das ameaças.
             }
             Console.Clear();
+            
+            //Se as chances de login forem do mesmo tamanho do vetor de strings, signfica que o site permitiu
+            //Testar todas as injeções de sql com o mesmo email
+            if (chancesToLogin == txt.Length)
+                Console.WriteLine("A pagina não possui validação de tentativas de login pelo mesmo email");
+            else
+                Console.WriteLine("A pagina validou o login com o mesmo email");
+
             Console.WriteLine($"Foi encontrado {threatStrings.Count()} senha(s) que permitiram acesso via Injeção de Sql:");
             foreach (var succesString in threatStrings)
                 Console.WriteLine(succesString);
@@ -50,9 +59,24 @@ namespace BotSQLInjection
             senha.SendKeys(vSenha);
             botao.Click();
 
+            //Se passou por todos os passos acima e encontrou todos os elementos
+            //Siginifica que a pagina nao foi redirecionada para outra de recuperacao de senha
+            //e permitiu que continuasse a tentar o login
+            increasePossibilitiesToLogin();
+
             //Adicionando 1 segundo de espera para completar o login para o próximo teste.
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
 
+            //chama o método que verifica se ha algum elemento na página que só deveria aparecer após fazer login
+            return verifyLoginSuccess(driver);
+        }
+
+        public static void increasePossibilitiesToLogin()
+        {
+            chancesToLogin++;
+        }
+        public static Boolean verifyLoginSuccess( IWebDriver driver)
+        {
             //Verificando se existe o botão após fazer o login
             //É verificado pelo xPath pois não há id nem name, e o xPath é um método que recebe como parâmetro
             //Uma String que apenas aquele elemento no DOM, possui.
@@ -72,7 +96,7 @@ namespace BotSQLInjection
 
         public static string[] readFromFile()
         {
-            string[] lines = System.IO.File.ReadAllLines(@"YOUR SQL TXT FILE ADDRESS HERE");
+            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\amauri\Desktop\sql.txt");
             return lines;
         }
     }
