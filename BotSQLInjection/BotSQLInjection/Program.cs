@@ -72,7 +72,7 @@ namespace BotSQLInjection
 
         public static string[] readFromFile()
         {
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\amauri\Desktop\sql.txt");
+            string[] lines = System.IO.File.ReadAllLines(@"YOUR SQL TXT FILE ADDRESS HERE");
             return lines;
         }
     }
